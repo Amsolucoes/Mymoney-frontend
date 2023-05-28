@@ -1,12 +1,12 @@
 const express = require("express");
 const auth = require("./auth");
 
-module.exports = function (server) {-+
+module.exports = function (server) {
 
-=-9 8y76grvfc  */
   /*
    * Rotas protegidas por Token JWT
    */
+
   const protectedApi = express.Router();
   server.use("/api", protectedApi);
 
