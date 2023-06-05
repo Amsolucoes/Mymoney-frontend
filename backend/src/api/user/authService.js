@@ -40,8 +40,6 @@ const validateToken = (req, res, next) => {
   });
 };
 
-console.log(validateToken);
-
 const signup = (req, res, next) => {
   const name = req.body.name || "";
   const email = req.body.email || "";

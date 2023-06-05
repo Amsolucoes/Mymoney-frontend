@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { getList, showUpdate, showDelete } from "./actions/BillingCycleActions";
-import { sort } from "../helpers/sort";
 
 class BillingCycleList extends Component {
   componentWillMount() {
@@ -11,10 +10,13 @@ class BillingCycleList extends Component {
 
   renderRows() {
     const list = this.props.list || [];
+    console.log(list);
     return list.map((bc) => (
       <tr key={bc._id}>
         <td>{bc.name}</td>
         <td>{bc.month}</td>
+        <td>{bc.year}</td>
+        <td>R$</td>
         <td>{bc.year}</td>
         <td>
           <button
@@ -43,6 +45,8 @@ class BillingCycleList extends Component {
               <th>Nome</th>
               <th>Mês</th>
               <th>Ano</th>
+              <th>Total de Crédito</th>
+              <th>Total de Débito</th>
               <th className="table-actions">Ações</th>
             </tr>
           </thead>

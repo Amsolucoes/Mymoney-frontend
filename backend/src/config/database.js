@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 module.exports = mongoose.connect(
-  "mongodb+srv: //andreivarras:<Al*301983*>@projetomymoney.cm6dl9i.mongodb.net/?retryWrites=true&w=majority",
+  "mongodb://localhost:27017",
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://localhost:3005/api'
+const BASE_URL = 'http://localhost:3010/api'
 
 export function getSummary() {
     const request = axios.get(`${BASE_URL}/BillingCycles/summary`)

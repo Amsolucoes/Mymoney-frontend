@@ -11,7 +11,6 @@ export function signup(values) {
 }
 
 function submit(values, url) {
-  console.log(values, url);
   return (dispatch) => {
     axios
       .post(url, values)
@@ -19,7 +18,6 @@ function submit(values, url) {
         dispatch([{ type: "USER_FETCHED", payload: resp.data }]);
       })
       .catch((e) => {
-        // console.log(e.response);
         e.response.data.errors.forEach(error => toastr.error("Erro", error));
       });
   };
@@ -30,7 +28,6 @@ export function logout() {
 }
 
 export function validateToken(token) {
-  console.log(token);
   return (dispatch) => {
     if (token) {
       axios
