@@ -4,7 +4,10 @@ import { bindActionCreators } from "redux";
 import Grid from "../dashboard/layout/grid";
 import { Field, arrayInsert, arrayRemove } from "redux-form";
 import Input from "../common/form/input";
+import Select from "../common/form/select";
+import SelectCategory from "../common/form/selectCategory";
 import If from "../common/operador/if";
+import moment from "moment";
 
 class itemList extends Component {
   add(index, item = {}) {
@@ -21,8 +24,11 @@ class itemList extends Component {
 
   renderRows() {
     const list = this.props.list || [];
+    console.log(list);
     return list.map((item, index) => (
       <tr key={index}>
+        {console.log(`${this.props.field}[${index}].vencimento`)}
+        {console.log(moment(item.vencimento).format("DD/MM/YYYY"))}
         <td>
           <Field
             name={`${this.props.field}[${index}].name`}
@@ -40,14 +46,35 @@ class itemList extends Component {
           />
         </td>
         <If test={this.props.showStatus}>
-        <td>
-          <Field
-            name={`${this.props.field}[${index}].status`}
-            component={Input}
-            placeholder="Informe o status"
-            readOnly={this.props.readOnly}
-          />
-        </td>
+          <td>
+            <Field
+              name={`${this.props.field}[${index}].status`}
+              component={Select}
+              placeholder="Informe o status"
+              readOnly={this.props.readOnly}
+            />
+          </td>
+        </If>
+        <If test={this.props.showStatus}>
+          <td>
+            <Field
+              name={`${this.props.field}[${index}].vencimento`}
+              component={Input}
+              placeholder="Informe o vencimento"
+              readOnly={this.props.readOnly}
+              value={item.vencimento}
+            />
+          </td>
+        </If>
+        <If test={this.props.showStatus}>
+          <td>
+            <Field
+              name={`${this.props.field}[${index}].category`}
+              component={SelectCategory}
+              placeholder="Informe a categoria"
+              readOnly={this.props.readOnly}
+            />
+          </td>
         </If>
         <td>
           <button
@@ -78,7 +105,7 @@ class itemList extends Component {
 
   render() {
     return (
-      <Grid cols={this.props.cols}>
+      <Grid cols="12">
         <fieldset>
           <legend>{this.props.legend}</legend>
           <table className="table">
@@ -88,6 +115,12 @@ class itemList extends Component {
                 <th>Valor</th>
                 <If test={this.props.showStatus}>
                   <th>Status</th>
+                </If>
+                <If test={this.props.showStatus}>
+                  <th>Vencimento</th>
+                </If>
+                <If test={this.props.showStatus}>
+                  <th>Categoria</th>
                 </If>
                 <th className="table-actions">Ações</th>
               </tr>
