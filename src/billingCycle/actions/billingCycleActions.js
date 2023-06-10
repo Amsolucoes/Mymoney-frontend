@@ -35,7 +35,7 @@ function submit(values, method) {
         dispatch(init());
       })
       .catch((e) => {
-        e.response.data.errors.forEach((error) => toastr.error("Erro", error));
+       toastr.error(e.response.data.reason.message);
       });
     return {
       type: "TEMP",
