@@ -7,7 +7,16 @@ const BASE_URL = "http://localhost:3010/api";
 const INITIAL_VALUES = {credits: [{}], debts: [{}]};
 
 export function getList() {
-  const request = axios.get(`${BASE_URL}/billingCycles`);
+  const userId = localStorage.getItem("userId"); // Pegando o ID do usuário
+  console.log("Buscando ciclos com userId:", userId); // 🔹 Adicione este log
+
+
+  if (!userId) {
+    toastr.error("Erro", "Usuário não autenticado!");
+    return { type: "BILLING_CYCLES_FETCHED", payload: [] };
+  }
+
+  const request = axios.get(`${BASE_URL}/billingCycles`, { params: { userId } });
   return {
     type: "BILLING_CYCLES_FETCHED",
     payload: request,
@@ -29,12 +38,22 @@ export function remove(values) {
 function submit(values, method) {
   return (dispatch) => {
     const id = values._id ? values._id : ''
-    axios[method](`${BASE_URL}/billingCycles/${id}`, values)
+    const userId = localStorage.getItem("userId"); // Obtendo o ID do usuário
+
+    if (!userId) {
+      toastr.error("Erro", "Usuário não autenticado!");
+      return;
+    }
+
+    const data = { ...values, userId }; // Incluindo o userId na requisição
+
+    axios[method](`${BASE_URL}/billingCycles/${id}`, data)
       .then((resp) => {
         toastr.success("Sucesso", "Operação realizada com sucesso!");
         dispatch(init());
       })
       .catch((e) => {
+        console.log(e);
        toastr.error(e.response.data.reason.message);
       });
     return {

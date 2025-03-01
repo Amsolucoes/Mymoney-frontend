@@ -6,8 +6,10 @@ import { Field, arrayInsert, arrayRemove } from "redux-form";
 import Input from "../common/form/input";
 import Select from "../common/form/select";
 import SelectCategory from "../common/form/selectCategory";
+import Selectparcelas from '../common/form/selectParcelas';
 import If from "../common/operador/if";
 import moment from "moment";
+import { formatDate, formatDateForDisplay } from '../helpers/date';
 
 class itemList extends Component {
   add(index, item = {}) {
@@ -27,8 +29,6 @@ class itemList extends Component {
     console.log(list);
     return list.map((item, index) => (
       <tr key={index}>
-        {console.log(`${this.props.field}[${index}].vencimento`)}
-        {console.log(moment(item.vencimento).format("DD/MM/YYYY"))}
         <td>
           <Field
             name={`${this.props.field}[${index}].name`}
@@ -43,15 +43,74 @@ class itemList extends Component {
             component={Input}
             placeholder="Informe o valor"
             readOnly={this.props.readOnly}
+            format={(value) => {
+              if (value === undefined || value === "") return ""; // Permite campo vazio
+              return `R$ ${value}`; // Apenas adiciona "R$ " sem alterar o número
+            }}
+            parse={(value) => {
+              if (!value) return ""; // Permite apagar tudo
+        
+              // Remove "R$" e espaços extras, substitui vírgula por ponto
+              const numericValue = value.replace(/R\$\s?/g, "").replace(",", ".");
+        
+              return numericValue; // Mantém o valor como string para não formatar instantaneamente
+            }}
+            onBlur={(event) => {
+              let { value } = event.target;
+        
+              if (value) {
+                // Converte para float e mantém 2 casas decimais
+                const numericValue = parseFloat(value.replace(",", "."));
+                this.props.input.onChange(isNaN(numericValue) ? "" : numericValue.toFixed(2));
+              }
+            }}
           />
         </td>
         <If test={this.props.showStatus}>
           <td>
             <Field
-              name={`${this.props.field}[${index}].status`}
-              component={Select}
-              placeholder="Informe o status"
+              name={`${this.props.field}[${index}].parcela`}
+              component={Selectparcelas}
+              placeholder="Informe a parcela"
               readOnly={this.props.readOnly}
+            />
+          </td>
+        </If>
+        <If test={this.props.showStatus}>
+          <td>
+            <Field
+              name={`${this.props.field}[${index}].totalParcelas`}
+              component={Selectparcelas}
+              placeholder="Informe o total de parcelas"
+              readOnly={this.props.readOnly}
+            />
+          </td>
+        </If>
+        <If test={this.props.showStatus}>
+          <td>
+            <Field
+              name={`${this.props.field}[${index}].status`}
+              component={({ input }) => (
+                <select
+                  {...input}
+                  className="form-control"
+                  style={{
+                    backgroundColor:
+                      input.value === "PENDENTE"
+                        ? "yellow"
+                        : input.value === "AGENDADO"
+                        ? "lightblue"
+                        : input.value === "PAGO"
+                        ? "lightgreen"
+                        : "transparent",
+                  }}
+                >
+                  <option value="">Selecione...</option>
+                  <option value="PENDENTE">Pendente</option>
+                  <option value="AGENDADO">Agendado</option>
+                  <option value="PAGO">Pago</option>
+                </select>
+              )}
             />
           </td>
         </If>
@@ -61,7 +120,9 @@ class itemList extends Component {
               name={`${this.props.field}[${index}].vencimento`}
               component={Input}
               placeholder="Informe o vencimento"
-              readOnly={this.props.readOnly}
+              readOnly={false}
+              format={formatDateForDisplay}
+              parse={formatDate}
               value={item.vencimento}
             />
           </td>
@@ -113,6 +174,12 @@ class itemList extends Component {
               <tr>
                 <th>Nome</th>
                 <th>Valor</th>
+                <If test={this.props.showStatus}>
+                  <th>Parcela</th>
+                </If>
+                <If test={this.props.showStatus}>
+                  <th>Total Parcelas</th>
+                </If>
                 <If test={this.props.showStatus}>
                   <th>Status</th>
                 </If>

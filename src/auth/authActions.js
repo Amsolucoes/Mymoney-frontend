@@ -11,14 +11,34 @@ export function signup(values) {
 }
 
 function submit(values, url) {
+  console.log("URL da requisição:", url);
+  console.log("Valores enviados:", values);
+
   return (dispatch) => {
     axios
-      .post(url, values)
+      .post(url, values, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: values.token ? `Bearer ${values.token}` : "",
+        }
+      })
       .then((resp) => {
+        // 🔹 Salva apenas UM token no localStorage
+        const { token } = resp.data;
+        if (token) {
+          localStorage.setItem("token", token);
+          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        }
+
+        localStorage.setItem("userId", resp.data.userId);
+
         dispatch([{ type: "USER_FETCHED", payload: resp.data }]);
       })
       .catch((e) => {
-        e.response.data.errors.forEach(error => toastr.error("Erro", error));
+        console.log("Erro ao logar:", e);
+        e.response.data.errors.forEach((error) =>
+          toastr.error("Erro", error)
+        );
       });
   };
 }
@@ -28,10 +48,11 @@ export function logout() {
 }
 
 export function validateToken(token) {
+  console.log('token:', token);
   return (dispatch) => {
     if (token) {
       axios
-        .post(`${consts.OAPI_URL}/validateToken`, { token })
+        .post(`${consts.API_URL}/validateToken`, { token })
         .then((resp) => {
           dispatch({ type: "TOKEN_VALIDATED", payload: resp.data.valid });
         })
