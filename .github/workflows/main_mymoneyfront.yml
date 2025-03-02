@@ -72,3 +72,4 @@ jobs:
           slot-name: 'Production'
           package: './build'
           clean: true #Remove arquivos antigos antes do deploy
+          restart: true #Reinicia o App Service após deploy
