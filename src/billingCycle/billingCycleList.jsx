@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { getList, showUpdate, showDelete } from "./actions/BillingCycleActions";
+import { getList, showUpdate, showDelete } from "./actions/billingCycleActions";
 
 class BillingCycleList extends Component {
   componentWillMount() {
