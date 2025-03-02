@@ -70,5 +70,5 @@ jobs:
         with:
           app-name: 'mymoneyfront'
           slot-name: 'Production'
-          package: .
+          package: ./build
           
