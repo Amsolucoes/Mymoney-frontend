@@ -13,7 +13,7 @@ export default ({ credit, debt }) => (
           cols="12 4"
           color="green"
           icon="bank"
-          value={`R$ ${credit}`}
+          value={`R$ ${(credit).toFixed(2)}`}
           text="Total de Créditos"
         />
         <ValueBox
