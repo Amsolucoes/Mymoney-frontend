@@ -68,8 +68,6 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'mymoneyfront'
+          app-name: 'mymoneycontasfront'
           slot-name: 'Production'
           package: './build'
-          clean: true #Remove arquivos antigos antes do deploy
-          restart: true #Reinicia o App Service após deploy
