@@ -30,7 +30,7 @@ jobs:
           npm run test --if-present
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: zip release.zip build/*
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -56,13 +56,6 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-      
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_229750283F29461EA2730A7E4E330076 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_443A207D38ED4E21A225A48F9D2E2EDD }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_71499F293DDC4335A12A1F0B159730F3 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
@@ -70,5 +63,5 @@ jobs:
         with:
           app-name: 'mymoneycontasfrontend'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: 'release.zip'
+          package: '.'
           
