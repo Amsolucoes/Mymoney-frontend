@@ -1,35 +1,39 @@
-name: Build and Deploy to Azure
+name: Deploy to Azure
 
 on:
   push:
     branches:
-      - main  # ou a branch que você está utilizando
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: Check out the code
+    # Checkout do código
+    - name: Checkout code
       uses: actions/checkout@v2
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
+    
+    # Login no Azure
+    - name: 'Login to Azure'
+      uses: azure/login@v1
       with:
-        node-version: '16'  # A versão desejada do Node.js
+        azure_credentials: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}  # Use suas credenciais do Azure armazenadas no GitHub Secrets
 
-    - name: Verify Node.js version
-      run: node -v
+    # Instalação das dependências
+    - name: 'Install dependencies'
+      run: |
+        npm install
 
-    - name: Install dependencies
-      run: npm install
+    # Build do projeto
+    - name: 'Build project'
+      run: |
+        npm run build
 
-    - name: Build the application
-      run: npm run build
-
-    - name: Deploy to Azure
+    # Deploy para o Azure
+    - name: 'Deploy to Azure'
       uses: azure/webapps-deploy@v2
       with:
-        app-name: ${{ secrets.AZURE_APP_NAME }}
-        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-        package: .  # ou o caminho do seu diretório de build, se necessário
+        app-name: 'mymoneycontasfrontend'  # Substitua pelo nome do seu app no Azure
+        slot-name: 'production'    # O slot de produção, se aplicável
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EE14B8B24ABF4BA7946516F1E5ACD346 }}  # Se você estiver usando um publish profile
