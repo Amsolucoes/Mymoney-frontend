@@ -23,6 +23,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install Oryx
+        run: |
+          curl -sL https://aka.ms/oryx-install.sh | bash
+
       - name: Build with Oryx
         run: |
           oryx build . --platform nodejs --platform-version 18 -o ./home/site/wwwroot
@@ -68,3 +72,5 @@ jobs:
           app-name: 'mymoneycontasfrontend'
           slot-name: 'Production'
           package: '.'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EE14B8B24ABF4BA7946516F1E5ACD346 }}
+          clean: true
