@@ -20,6 +20,11 @@ jobs:
         with:
           node-version: '18.x'
 
+      - name: Remove conflicting containerd
+        run: |
+          sudo apt-get remove -y containerd
+          sudo apt-get autoremove -y
+
       - name: Install Docker
         run: |
           sudo apt-get update
