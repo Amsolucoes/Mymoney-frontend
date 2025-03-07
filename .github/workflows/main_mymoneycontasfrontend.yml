@@ -31,3 +31,4 @@ jobs:
         app-name: 'mymoneycontasfrontend'  # Substitua pelo nome correto do seu App Service no Azure
         slot-name: 'Production'  # Ou o nome do seu slot específico
         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EE14B8B24ABF4BA7946516F1E5ACD346 }}  # Use o secret com o conteúdo do publish profile
+        package: './build'
