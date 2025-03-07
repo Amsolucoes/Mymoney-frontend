@@ -20,19 +20,17 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Install Oryx via APT
+      - name: Install Docker
         run: |
-          curl -sL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-          curl -sL https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list | sudo tee /etc/apt/sources.list.d/microsoft-prod.list
           sudo apt-get update
-          sudo apt-get install -y oryx
+          sudo apt-get install -y docker.io
+          sudo systemctl start docker
+          sudo systemctl enable docker
 
-      - name: Build with Oryx
+      - name: Build with Docker and Oryx
         run: |
-          oryx build . --platform nodejs --platform-version 18 -o ./home/site/wwwroot
+          docker pull mcr.microsoft.com/oryx/build:latest
+          docker run --rm -v $(pwd):/src mcr.microsoft.com/oryx/build:latest --platform nodejs --platform-version 18 /src
 
       - name: npm install, build, and test
         run: |
