@@ -29,4 +29,5 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'mymoneycontasfrontend'  # Substitua pelo nome correto do seu App Service no Azure
+        slot-name: 'production'  # Ou o nome do seu slot específico
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}  # Use o secret com o conteúdo do publish profile
