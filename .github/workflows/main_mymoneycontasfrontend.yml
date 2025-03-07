@@ -23,6 +23,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Build with Oryx
+        run: |
+          oryx build . --platform nodejs --platform-version 18 -o ./home/site/wwwroot
+
       - name: npm install, build, and test
         run: |
           npm ci
@@ -30,7 +34,7 @@ jobs:
           npm run test --if-present
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip ./build
+        run: zip -r release.zip ./home/site/wwwroot
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -64,5 +68,3 @@ jobs:
           app-name: 'mymoneycontasfrontend'
           slot-name: 'Production'
           package: '.'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EE14B8B24ABF4BA7946516F1E5ACD346 }}
-          clean: true
