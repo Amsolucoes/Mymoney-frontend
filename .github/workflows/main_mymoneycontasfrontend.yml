@@ -23,9 +23,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Oryx
+      - name: Install Oryx via APT
         run: |
-          curl -sL https://aka.ms/oryx-install.sh | bash
+          curl -sL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+          curl -sL https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list | sudo tee /etc/apt/sources.list.d/microsoft-prod.list
+          sudo apt-get update
+          sudo apt-get install -y oryx
 
       - name: Build with Oryx
         run: |
