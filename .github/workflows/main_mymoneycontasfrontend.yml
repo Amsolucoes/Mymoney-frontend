@@ -63,6 +63,6 @@ jobs:
         with:
           app-name: 'mymoneycontasfrontend'
           slot-name: 'Production'
-          package: .
+          package: '.'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EE14B8B24ABF4BA7946516F1E5ACD346 }}
           clean: ${{ secrets.AZURE_DEPLOY_CLEAN }}
