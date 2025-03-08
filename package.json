@@ -1,9 +1,7 @@
 {
   "name": "my-money-frontend",
   "version": "1.0.0",
-  "engines": {
-    "node": "18.x"
-  },
+  "homepage": "https://mango-field-01903650f.6.azurestaticapps.net/",
   "description": "",
   "main": "index.jsx",
   "scripts": {
