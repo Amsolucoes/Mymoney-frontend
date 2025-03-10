@@ -6,12 +6,10 @@ import BillingCycle from "../billingCycle/billingCycle";
 
 export default (props) => (
   <div className="content-wrapper">
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Dashboard} />
-        <Route path="/billingCycles" component={BillingCycle} />
-        <Redirect from="*" to="/" />
-      </Switch>
-    </Router>
+    <Switch>
+       <Route exact path="/" component={Dashboard} />
+       <Route path="/billingCycles" component={BillingCycle} />
+       <Redirect from="*" to="/" />
+    </Switch>
   </div>
 );
