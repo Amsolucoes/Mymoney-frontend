@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/static/css/main.2d315c00.css",
-    "main.js": "/static/js/main.c8445a63.js",
-    "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
-    "static/media/ionicons.svg?v=4.4.2": "/static/media/ionicons.6122efc1073c22c6aded.svg",
-    "static/media/fontawesome-webfont.eot": "/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
-    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
-    "static/media/boxed-bg.jpg": "/static/media/boxed-bg.0de93c39950fc78a1f79.jpg",
-    "static/media/ionicons.eot?v=4.4.2": "/static/media/ionicons.f237cb0484eab8b8e0a3.eot",
-    "static/media/ionicons.ttf?v=4.4.2": "/static/media/ionicons.fef568f64dd5a32ab65b.ttf",
-    "static/media/glyphicons-halflings-regular.svg": "/static/media/glyphicons-halflings-regular.060b2710bdbbe3dfe48b.svg",
-    "static/media/fontawesome-webfont.woff?v=4.7.0": "/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
-    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
-    "static/media/ionicons.woff?v=4.4.2": "/static/media/ionicons.3d21eb08134a9c223235.woff",
-    "static/media/ionicons.woff2?v=4.4.2": "/static/media/ionicons.6246a419c8190cd3dec4.woff2",
-    "static/media/glyphicons-halflings-regular.ttf": "/static/media/glyphicons-halflings-regular.4692b9ec53fd5972caa2.ttf",
-    "static/media/glyphicons-halflings-regular.woff": "/static/media/glyphicons-halflings-regular.82b1212e45a2bc35dd73.woff",
-    "static/media/glyphicons-halflings-regular.eot": "/static/media/glyphicons-halflings-regular.5be1347c682810f199c7.eot",
-    "static/media/glyphicons-halflings-regular.woff2": "/static/media/glyphicons-halflings-regular.be810be3a3e14c682a25.woff2",
-    "index.html": "/index.html",
-    "main.2d315c00.css.map": "/static/css/main.2d315c00.css.map",
-    "main.c8445a63.js.map": "/static/js/main.c8445a63.js.map"
+    "main.css": "./static/css/main.7eadb912.css",
+    "main.js": "./static/js/main.80d5797d.js",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "./static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/ionicons.svg?v=4.4.2": "./static/media/ionicons.6122efc1073c22c6aded.svg",
+    "static/media/fontawesome-webfont.eot": "./static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "./static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/boxed-bg.jpg": "./static/media/boxed-bg.0de93c39950fc78a1f79.jpg",
+    "static/media/ionicons.eot?v=4.4.2": "./static/media/ionicons.f237cb0484eab8b8e0a3.eot",
+    "static/media/ionicons.ttf?v=4.4.2": "./static/media/ionicons.fef568f64dd5a32ab65b.ttf",
+    "static/media/glyphicons-halflings-regular.svg": "./static/media/glyphicons-halflings-regular.060b2710bdbbe3dfe48b.svg",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "./static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "./static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/ionicons.woff?v=4.4.2": "./static/media/ionicons.3d21eb08134a9c223235.woff",
+    "static/media/ionicons.woff2?v=4.4.2": "./static/media/ionicons.6246a419c8190cd3dec4.woff2",
+    "static/media/glyphicons-halflings-regular.ttf": "./static/media/glyphicons-halflings-regular.4692b9ec53fd5972caa2.ttf",
+    "static/media/glyphicons-halflings-regular.woff": "./static/media/glyphicons-halflings-regular.82b1212e45a2bc35dd73.woff",
+    "static/media/glyphicons-halflings-regular.eot": "./static/media/glyphicons-halflings-regular.5be1347c682810f199c7.eot",
+    "static/media/glyphicons-halflings-regular.woff2": "./static/media/glyphicons-halflings-regular.be810be3a3e14c682a25.woff2",
+    "index.html": "./index.html",
+    "main.7eadb912.css.map": "./static/css/main.7eadb912.css.map",
+    "main.80d5797d.js.map": "./static/js/main.80d5797d.js.map"
   },
   "entrypoints": [
-    "static/css/main.2d315c00.css",
-    "static/js/main.c8445a63.js"
+    "static/css/main.7eadb912.css",
+    "static/js/main.80d5797d.js"
   ]
 }
