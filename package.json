@@ -2,6 +2,7 @@
   "name": "my-money-frontend",
   "version": "1.0.0",
   "description": "",
+  "homepage": ".",
   "main": "index.jsx",
   "scripts": {
     "start": "npm run dev",

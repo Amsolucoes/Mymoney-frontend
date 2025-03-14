@@ -23,6 +23,7 @@ function submit(values, url) {
         }
       })
       .then((resp) => {
+        console.log('resposta: ',resp);
         // 🔹 Salva apenas UM token no localStorage
         const { token } = resp.data;
         if (token) {
